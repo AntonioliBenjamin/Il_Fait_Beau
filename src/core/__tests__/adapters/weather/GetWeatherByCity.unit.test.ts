@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { AxiosGateway } from "./../gateways/AxiosGateway";
 import { InMemoryWeatherRepository } from "./../repositories/InMemoryWeatherRepository";
 import { GetWeatherByCity } from "./../../../usecases/GetWeatherByCity";
@@ -21,7 +22,7 @@ describe("Unit - GetWeatherByCity", () => {
       temp_c: 264,
       windSpeed: 150,
     });
-    db.set(weather.props.city, weather)
+    db.set(weather.props.city, weather);
   });
   it("should get weather by city from map", async () => {
     const result = await getWeatherByCity.execute("paris");
@@ -30,9 +31,9 @@ describe("Unit - GetWeatherByCity", () => {
 
   it("should get weather by city from Open Weather API", async () => {
     const result = await getWeatherByCity.execute("tokyo");
-    expect(result.props.humidity).toBeGreaterThan(0)
-    expect(result.props.temp_c).toBeDefined()
-    expect(result.props.temp_c).toBeGreaterThan(0)
-    expect(result.props.city).toEqual("tokyo")
-  })
+    expect(result.props.humidity).toBeGreaterThan(0);
+    expect(result.props.temp_c).toBeDefined();
+    expect(result.props.temp_c).toBeGreaterThan(0);
+    expect(result.props.city).toEqual("tokyo");
+  });
 });

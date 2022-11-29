@@ -1,7 +1,6 @@
-import { Weather } from './../entities/Weather';
+import { Weather } from "./../entities/Weather";
 export interface WeatherRepository {
+  exist(city: string): Weather;
 
-    exist(city: string): Weather
-
-    save(weather: Weather): Weather
+  save(weather: Weather): Weather;
 }
