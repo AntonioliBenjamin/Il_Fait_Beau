@@ -1,18 +1,19 @@
+import { GetWeatherByCoordinate } from "./../../usecases/GetWeatherByCoordinate";
 import "dotenv/config";
 import { AxiosGateway } from "../adapters/gateways/AxiosGateway";
 import { InMemoryWeatherRepository } from "../adapters/repositories/InMemoryWeatherRepository";
-import { GetWeatherByCity } from "../../usecases/GetWeatherByCity";
+
 import { Weather } from "../../entities/Weather";
 const axiosGateway = new AxiosGateway();
 const db = new Map<string, Weather>();
 const inMemoryWeatherRepository = new InMemoryWeatherRepository(db);
 
-describe("Unit - GetWeatherByCity", () => {
+describe("Unit - GetWeatherByCoordinate", () => {
   let weather: Weather;
-  let getWeatherByCity: GetWeatherByCity;
+  let getWeatherByCoordinate: GetWeatherByCoordinate;
 
   beforeAll(() => {
-    getWeatherByCity = new GetWeatherByCity(
+    getWeatherByCoordinate = new GetWeatherByCoordinate(
       inMemoryWeatherRepository,
       axiosGateway
     );
@@ -27,17 +28,21 @@ describe("Unit - GetWeatherByCity", () => {
     });
     db.set(weather.props.city, weather);
   });
-  it("should get weather by city from map", async () => {
-    const result = await getWeatherByCity.execute("paris");
-    expect(result.props.humidity).toEqual(0.99);
+  it("should get weather by coordinate from db", async () => {
+    const result = await getWeatherByCoordinate.execute({
+      lat: 9999,
+      lon: 1111,
+    });
+    expect(result.props.city).toEqual("paris");
   });
 
-  it("should get weather by city from Open Weather API", async () => {
-    const result = await getWeatherByCity.execute("tokyo");
+  it("should get weather by coordinate from OpenWeatherAPI", async () => {
+    const result = await getWeatherByCoordinate.execute({
+      lat: 40.7143,
+      lon: -74.006,
+    });
     console.log(result)
-    expect(result.props.humidity).toBeGreaterThan(0);
-    expect(result.props.temp_c).toBeDefined();
-    expect(result.props.temp_c).toBeGreaterThan(0);
-    expect(result.props.city).toEqual("tokyo");
+    expect(result.props.city).toEqual("new york");
   });
 });
+
