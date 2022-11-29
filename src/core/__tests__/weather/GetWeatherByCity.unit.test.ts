@@ -1,8 +1,8 @@
 import "dotenv/config";
-import { AxiosGateway } from "./../gateways/AxiosGateway";
-import { InMemoryWeatherRepository } from "./../repositories/InMemoryWeatherRepository";
-import { GetWeatherByCity } from "./../../../usecases/GetWeatherByCity";
-import { Weather } from "../../../entities/Weather";
+import { AxiosGateway } from "../adapters/gateways/AxiosGateway";
+import { InMemoryWeatherRepository } from "../adapters/repositories/InMemoryWeatherRepository";
+import { GetWeatherByCity } from "../../usecases/GetWeatherByCity";
+import { Weather } from "../../entities/Weather";
 const axiosGateway = new AxiosGateway();
 const db = new Map<string, Weather>();
 const inMemoryWeatherRepository = new InMemoryWeatherRepository(db);
