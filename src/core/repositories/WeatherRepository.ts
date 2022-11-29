@@ -5,4 +5,6 @@ export interface WeatherRepository {
   coordinateExist(lat: number, lon: number): Promise<Weather>;
 
   save(weather: Weather): Weather;
+
+  deleteAll(input: void): void;
 }
