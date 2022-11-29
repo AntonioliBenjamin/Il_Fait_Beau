@@ -3,6 +3,9 @@ export type WeatherProperties = {
   temp_c: number;
   humidity: number;
   windSpeed: number;
+  lat: number;
+  lon: number;
+  createdAt: Date;
 };
 
 export class Weather {
@@ -17,12 +20,17 @@ export class Weather {
     temp_c: number;
     humidity: number;
     windSpeed: number;
+    lat: number;
+    lon: number;
   }) {
     return new Weather({
-      city: props.city,
+      city: props.city.toLowerCase(),
       temp_c: props.temp_c,
       humidity: props.humidity,
       windSpeed: props.windSpeed,
+      lat: props.lat,
+      lon: props.lon,
+      createdAt: new Date(),
     });
   }
 }
