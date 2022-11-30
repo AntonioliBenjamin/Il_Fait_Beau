@@ -1,10 +1,10 @@
 import { GetWeatherByCoordinate } from "./../../usecases/GetWeatherByCoordinate";
 import "dotenv/config";
-import { AxiosGateway } from "../adapters/gateways/AxiosGateway";
+import { InMemoryWeatherGateway } from "../adapters/gateways/InMemoryWeatherGateway";
 import { InMemoryWeatherRepository } from "../adapters/repositories/InMemoryWeatherRepository";
-
 import { Weather } from "../../entities/Weather";
-const axiosGateway = new AxiosGateway();
+const weatherDb = new Map<string, Weather>();
+const axiosGateway = new InMemoryWeatherGateway(weatherDb);
 const db = new Map<string, Weather>();
 const inMemoryWeatherRepository = new InMemoryWeatherRepository(db);
 
@@ -20,12 +20,24 @@ describe("Unit - GetWeatherByCoordinate", () => {
     weather = new Weather({
       city: "paris",
       humidity: 0.99,
-      temp_c: 264,
+      tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
       lat: 9999,
       lon: 1111,
     });
+    weatherDb.set(
+      "tokyo",
+      new Weather({
+        city: "tokyo",
+        humidity: 0.99,
+        tempInCelcius: 264,
+        windSpeed: 150,
+        createdAt: new Date(),
+        lat: 2222,
+        lon: 1111,
+      })
+    );
     db.set(weather.props.city, weather);
   });
   it("should get weather by coordinate from db", async () => {
@@ -38,11 +50,10 @@ describe("Unit - GetWeatherByCoordinate", () => {
 
   it("should get weather by coordinate from OpenWeatherAPI", async () => {
     const result = await getWeatherByCoordinate.execute({
-      lat: 40.7143,
-      lon: -74.006,
+      lat: 2222,
+      lon: 1111,
     });
-    console.log(result)
-    expect(result.props.city).toEqual("new york");
+    expect(result.props.city).toEqual("tokyo");
   });
 });
 

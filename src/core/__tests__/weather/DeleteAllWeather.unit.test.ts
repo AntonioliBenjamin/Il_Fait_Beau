@@ -14,7 +14,7 @@ describe("Unit - GetWeatherByCity", () => {
     weather = new Weather({
       city: "paris",
       humidity: 0.99,
-      temp_c: 264,
+      tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
       lat: 9999,
@@ -22,8 +22,9 @@ describe("Unit - GetWeatherByCity", () => {
     });
     db.set(weather.props.city, weather);
   });
+  
   it("should get weather by city from map", async () => {
-    const result = deleteAllWeather.execute();
+    deleteAllWeather.execute();
     expect(db.get("paris")).toBeFalsy();
   });
 });

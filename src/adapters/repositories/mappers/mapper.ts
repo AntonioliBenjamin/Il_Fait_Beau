@@ -1,5 +1,5 @@
 export interface Mapper<DomainModel, OutsideModel> {
-    toDomain(raw: OutsideModel): DomainModel;
+    toDomain?(raw: OutsideModel): DomainModel;
 
-    fromDomain(date: DomainModel): OutsideModel;
+    fromDomain?(date: DomainModel): OutsideModel;
 }

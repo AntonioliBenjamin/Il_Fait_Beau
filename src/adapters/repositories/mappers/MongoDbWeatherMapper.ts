@@ -2,12 +2,45 @@ import { MongoDbWeatherModel, MongoDbWeatherSchemaProperties } from './../models
 import { Weather } from '../../../core/entities/Weather';
 import { Mapper } from './mapper';
 
-export class MongoDbWeatherMapper implements Mapper<Weather,MongoDbWeatherSchemaProperties >{
+export class MongoDbWeatherMapper implements Mapper<Weather, MongoDbWeatherSchemaProperties >{
     toDomain(raw: MongoDbWeatherSchemaProperties): Weather {
-        throw new Error('Method not implemented.');
+        const {
+            city,
+            tempInCelcius,
+            humidity,
+            windSpeed,
+            lat,
+            lon,
+            createdAt,
+        } = raw;
+        return new Weather({
+            city,
+            tempInCelcius: tempInCelcius,
+            humidity,
+            windSpeed,
+            lat,
+            lon,
+            createdAt: new Date(createdAt),
+        })
     }
-    fromDomain(date: Weather): MongoDbWeatherSchemaProperties {
-        throw new Error('Method not implemented.');
+    fromDomain(weather: Weather): MongoDbWeatherSchemaProperties {
+        const {
+            city,
+            tempInCelcius: tempInCelcius,
+            humidity,
+            windSpeed,
+            lat,
+            lon,
+            createdAt,
+        } = weather.props;
+        return {
+            city,
+            tempInCelcius,
+            humidity,
+            windSpeed,
+            lat,
+            lon,
+            createdAt: +createdAt,
+        }
     }
-
 }
