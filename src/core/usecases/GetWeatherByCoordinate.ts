@@ -4,8 +4,9 @@ import { Weather } from './../entities/Weather';
 import { UseCase } from './Usecase';
 
 export type GetWeatherByCoordinateInput = {
-    lon : number;
     lat: number;
+    lon : number;
+
 }
 
 export class GetWeatherByCoordinate implements UseCase<GetWeatherByCoordinateInput, Promise<Weather>> {
