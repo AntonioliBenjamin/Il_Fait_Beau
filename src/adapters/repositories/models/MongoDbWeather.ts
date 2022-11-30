@@ -1,29 +1,44 @@
 import { model, Schema } from "mongoose";
 
 export type MongoDbWeatherSchemaProperties = {
-    city: string;
-    temp_c: number;
-    humidity: number;
-    windSpeed: number;
+  city: string;
+  tempInCelcius: number;
+  humidity: number;
+  windSpeed: number;
+  lat: number;
+  lon: number;
+  createdAt: number;
 };
 
 const MongoDbWeatherSchema = new Schema({
- city: {
+  city: {
     type: String,
     required: true,
- },
- temp_c: {
+  },
+  tempInCelcius: {
     type: Number,
     required: true,
- },
- humidity: {
+  },
+  humidity: {
     type: Number,
     required: true,
- },
- windSpeed: {
+  },
+  windSpeed: {
     type: Number,
     required: true,
- },
+  },
+  lat: {
+    type: Number,
+    required: true,
+  },
+  lon: {
+    type: Number,
+    required: true,
+  },
+  createdAt: {
+    type: Number,
+    required: true,
+  },
 });
 
 export const MongoDbWeatherModel = model("Weather", MongoDbWeatherSchema);

@@ -17,16 +17,16 @@ export class GetWeatherByCoordinate implements UseCase<GetWeatherByCoordinateInp
    
     async execute(input: GetWeatherByCoordinateInput): Promise<Weather> {
         const { lon, lat} = input
-        const isExistsInDb = await this.weatherRepository.coordinateExist(lat, lon);
+        const isExistsInDb = await this.weatherRepository.getByCoordinate(lat, lon);
         
         if (isExistsInDb) {
           return isExistsInDb;
         }
-        const getWeather = await this.weatherGateway.GetWeatherByCoordinate(lon, lat);
+        const getWeather = await this.weatherGateway.getWeatherByCoordinate(lon, lat);
         const weather= Weather.create({
             city: getWeather.props.city,
             humidity: getWeather.props.humidity,
-            temp_c: getWeather.props.temp_c,
+            tempInCelcius: getWeather.props.tempInCelcius,
             windSpeed: getWeather.props.windSpeed,
             lat: getWeather.props.lat,
             lon: getWeather.props.lon,

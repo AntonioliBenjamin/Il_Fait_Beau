@@ -1,6 +1,6 @@
 export type WeatherProperties = {
   city: string;
-  temp_c: number;
+  tempInCelcius: number;
   humidity: number;
   windSpeed: number;
   lat: number;
@@ -17,7 +17,7 @@ export class Weather {
 
   static create(props: {
     city: string;
-    temp_c: number;
+    tempInCelcius: number;
     humidity: number;
     windSpeed: number;
     lat: number;
@@ -25,7 +25,7 @@ export class Weather {
   }) {
     return new Weather({
       city: props.city.toLowerCase(),
-      temp_c: props.temp_c,
+      tempInCelcius: props.tempInCelcius,
       humidity: props.humidity,
       windSpeed: props.windSpeed,
       lat: props.lat,
