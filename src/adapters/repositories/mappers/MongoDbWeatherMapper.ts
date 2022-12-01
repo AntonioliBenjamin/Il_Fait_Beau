@@ -1,4 +1,4 @@
-import { MongoDbWeatherModel, MongoDbWeatherSchemaProperties } from './../models/MongoDbWeather';
+import { MongoDbWeatherSchemaProperties } from './../models/MongoDbWeather';
 import { Weather } from '../../../core/entities/Weather';
 import { Mapper } from './mapper';
 
