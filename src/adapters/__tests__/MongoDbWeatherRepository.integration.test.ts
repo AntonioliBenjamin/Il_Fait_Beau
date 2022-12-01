@@ -1,3 +1,4 @@
+import { weatherFixtures } from './../../core/fixtures/weatherFixtures';
 import { MongoDbWeatherModel } from './../repositories/models/MongoDbWeather';
 import { Weather } from "./../../core/entities/Weather";
 import { MongoDbWeatherRepository } from "./../repositories/MongoDbWeatherRepository";
@@ -18,14 +19,7 @@ describe("Integration - MongoDbWeatherRepository", () => {
     }); 
 
     
-    weather = Weather.create({
-      city: "las vegas",
-      humidity: 0.99,
-      lat: 7777,
-      lon: 7777,
-      tempInCelcius: 18,
-      windSpeed: 45,
-    });
+    weather = weatherFixtures[2]
     
   });
 
@@ -43,9 +37,9 @@ describe("Integration - MongoDbWeatherRepository", () => {
     await mongoose.connection.close();
   });
 
-  it("should save weather", () => {
-   mongoDbWeatherRepository.save(weather)
-    
+  it("should save weather",async () => {
+   const result = await mongoDbWeatherRepository.save(weather)
+   expect(result.props.city).toEqual("las vegas")
   });
 
   it("should get weather by city", async () => {

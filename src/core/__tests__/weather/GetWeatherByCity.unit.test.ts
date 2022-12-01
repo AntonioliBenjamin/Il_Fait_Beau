@@ -1,3 +1,4 @@
+import { weatherFixtures } from './../../fixtures/weatherFixtures';
 import "dotenv/config";
 import { InMemoryWeatherGateway } from "../adapters/gateways/InMemoryWeatherGateway";
 import { InMemoryWeatherRepository } from "../adapters/repositories/InMemoryWeatherRepository";
@@ -9,7 +10,7 @@ const inMemoryWeatherRepository = new InMemoryWeatherRepository(db);
 const axiosGateway = new InMemoryWeatherGateway(weatherDb);
 
 describe("Unit - GetWeatherByCity", () => {
-  let weather: Weather;
+  let weather: Weather 
   let getWeatherByCity: GetWeatherByCity;
 
   beforeAll(() => {
@@ -17,15 +18,7 @@ describe("Unit - GetWeatherByCity", () => {
       inMemoryWeatherRepository,
       axiosGateway
     );
-    weather = new Weather({
-      city: "paris",
-      humidity: 0.99,
-      tempInCelcius: 264,
-      windSpeed: 150,
-      createdAt: new Date(),
-      lat: 9999,
-      lon: 1111,
-    });
+    weather = weatherFixtures[0];
     weatherDb.set(
       "tokyo",
       new Weather({

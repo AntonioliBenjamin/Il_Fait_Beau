@@ -24,15 +24,7 @@ export class GetWeatherByCoordinate implements UseCase<GetWeatherByCoordinateInp
           return isExistsInDb;
         }
         const getWeather = await this.weatherGateway.getWeatherByCoordinate(lon, lat);
-        const weather= Weather.create({
-            city: getWeather.props.city,
-            humidity: getWeather.props.humidity,
-            tempInCelcius: getWeather.props.tempInCelcius,
-            windSpeed: getWeather.props.windSpeed,
-            lat: getWeather.props.lat,
-            lon: getWeather.props.lon,
-        });
+        const weather= Weather.create(getWeather.props);
         return this.weatherRepository.save(weather);
     }
-
 }

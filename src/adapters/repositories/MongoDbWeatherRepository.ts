@@ -5,6 +5,7 @@ import { MongoDbWeatherMapper } from "./mappers/MongoDbWeatherMapper";
 const mongoDbWeatherMapper = new MongoDbWeatherMapper();
 
 export class MongoDbWeatherRepository implements WeatherRepository {
+  
   async save(weather: Weather): Promise<Weather> {
     const weatherFromDomain = mongoDbWeatherMapper.fromDomain(weather);
     const weatherModel = new MongoDbWeatherModel(weatherFromDomain);

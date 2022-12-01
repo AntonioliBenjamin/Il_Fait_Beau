@@ -15,14 +15,7 @@ export class GetWeatherByCity implements UseCase<string, Weather> {
       return isAlreadyExists;
     }
     const getWeather = await this.weatherGateway.getByCity(city);
-    const weather = Weather.create({
-        city: getWeather.props.city,
-        humidity: getWeather.props.humidity,
-        tempInCelcius: getWeather.props.tempInCelcius,
-        windSpeed: getWeather.props.windSpeed,
-        lat: getWeather.props.lat,
-        lon: getWeather.props.lon,
-    });
+    const weather = Weather.create(getWeather.props);
     return this.weatherRepository.save(weather);
   }
 }
