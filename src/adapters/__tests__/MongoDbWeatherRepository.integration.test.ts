@@ -1,5 +1,5 @@
-import { weatherFixtures } from './../../core/fixtures/weatherFixtures';
-import { MongoDbWeatherModel } from './../repositories/models/MongoDbWeather';
+import { weatherFixtures } from "./../../core/fixtures/weatherFixtures";
+import { MongoDbWeatherModel } from "./../repositories/models/MongoDbWeather";
 import { Weather } from "./../../core/entities/Weather";
 import { MongoDbWeatherRepository } from "./../repositories/MongoDbWeatherRepository";
 import mongoose from "mongoose";
@@ -16,17 +16,14 @@ describe("Integration - MongoDbWeatherRepository", () => {
         throw err;
       }
       console.info("Connected to mongodb");
-    }); 
+    });
 
-    
-    weather = weatherFixtures[1]
-    
+    weather = weatherFixtures[1];
   });
 
   beforeEach(async () => {
-
-   await mongoDbWeatherRepository.save(weather);
-  })
+    await mongoDbWeatherRepository.save(weather);
+  });
 
   afterEach(async () => {
     await MongoDbWeatherModel.collection.drop();
@@ -37,24 +34,27 @@ describe("Integration - MongoDbWeatherRepository", () => {
     await mongoose.connection.close();
   });
 
-  it("should save weather",async () => {
-   const result = await mongoDbWeatherRepository.save(weather)
-   expect(result.props.city).toEqual("marseille")
+  it("should save weather", async () => {
+    const result = await mongoDbWeatherRepository.save(weather);
+    expect(result.props.city).toEqual("marseille");
   });
 
   it("should get weather by city", async () => {
     const result = await mongoDbWeatherRepository.getByCity("marseille");
-    expect(result.props.lat).toEqual(43.29695)
-  })
+    expect(result.props.lat).toEqual(43.29695);
+  });
 
   it("should get weather by coordinate", async () => {
-    const result = await mongoDbWeatherRepository.getByCoordinate(43.29695, 5.38107);
-    expect(result.props.lat).toEqual(43.29695)
-  })
+    const result = await mongoDbWeatherRepository.getByCoordinate(
+      43.29695,
+      5.38107
+    );
+    expect(result.props.lat).toEqual(43.29695);
+  });
 
   it("should delete all weathers", async () => {
-    await mongoDbWeatherRepository.deleteAll()
+    await mongoDbWeatherRepository.deleteAll();
     const result = await mongoDbWeatherRepository.getByCity("marseille");
-    expect(result).toEqual(null)
-  })
+    expect(result).toEqual(null);
+  });
 });

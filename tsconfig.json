@@ -1,5 +1,5 @@
 {
-  "include": ["cities.json"],
+  
   "compilerOptions": {
     /* Language and Environment */
     "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
@@ -10,6 +10,6 @@
     "module": "commonjs" /* Specify what module code is generated. */,
     "rootDir": "./src",
     "outDir": "dist",
-    "resolveJsonModule":true
+    "resolveJsonModule":true,
   }
 }

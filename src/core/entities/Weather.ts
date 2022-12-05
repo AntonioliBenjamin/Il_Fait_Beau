@@ -15,7 +15,6 @@ export class Weather {
 
   constructor(props: WeatherProperties) {
     this.props = props;
-    this.props.city = new City(props.city).exist();
     new Coordinates({
       lat: this.props.lat,
       lon: this.props.lon,
@@ -31,7 +30,7 @@ export class Weather {
     lon: number;
   }) {
     return new Weather({
-      city: props.city.toLowerCase().trim(),
+      city: new City(props.city.toLowerCase().trim()).exist(),
       tempInCelcius: props.tempInCelcius,
       humidity: props.humidity,
       windSpeed: props.windSpeed,

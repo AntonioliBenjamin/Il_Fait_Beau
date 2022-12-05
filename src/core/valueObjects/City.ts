@@ -3,6 +3,7 @@ const cities = require("cities.json");
 
 export class City {
   city: string;
+
   constructor(city: string) {
     this.city = city.trim().toLowerCase();
     if (!this.isValid()) {
