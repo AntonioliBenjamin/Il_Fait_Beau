@@ -19,7 +19,7 @@ describe("Integration - MongoDbWeatherRepository", () => {
     }); 
 
     
-    weather = weatherFixtures[2]
+    weather = weatherFixtures[1]
     
   });
 
@@ -39,22 +39,22 @@ describe("Integration - MongoDbWeatherRepository", () => {
 
   it("should save weather",async () => {
    const result = await mongoDbWeatherRepository.save(weather)
-   expect(result.props.city).toEqual("las vegas")
+   expect(result.props.city).toEqual("marseille")
   });
 
   it("should get weather by city", async () => {
-    const result = await mongoDbWeatherRepository.getByCity("las vegas");
-    expect(result.props.lat).toEqual(7777)
+    const result = await mongoDbWeatherRepository.getByCity("marseille");
+    expect(result.props.lat).toEqual(43.29695)
   })
 
   it("should get weather by coordinate", async () => {
-    const result = await mongoDbWeatherRepository.getByCoordinate(7777, 7777);
-    expect(result.props.lat).toEqual(7777)
+    const result = await mongoDbWeatherRepository.getByCoordinate(43.29695, 5.38107);
+    expect(result.props.lat).toEqual(43.29695)
   })
 
   it("should delete all weathers", async () => {
     await mongoDbWeatherRepository.deleteAll()
-    const result = await mongoDbWeatherRepository.getByCity("las vegas");
+    const result = await mongoDbWeatherRepository.getByCity("marseille");
     expect(result).toEqual(null)
   })
 });

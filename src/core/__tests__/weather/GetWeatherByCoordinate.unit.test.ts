@@ -23,8 +23,8 @@ describe("Unit - GetWeatherByCoordinate", () => {
       tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
-      lat: 9999,
-      lon: 1111,
+      lat: 48.85341,
+      lon: 2.3488,
     });
     weatherDb.set(
       "tokyo",
@@ -34,24 +34,24 @@ describe("Unit - GetWeatherByCoordinate", () => {
         tempInCelcius: 264,
         windSpeed: 150,
         createdAt: new Date(),
-        lat: 2222,
-        lon: 1111,
+        lat: 35.6895,
+        lon: 139.69171,
       })
     );
     db.set(weather.props.city, weather);
   });
   it("should get weather by coordinate from db", async () => {
     const result = await getWeatherByCoordinate.execute({
-      lat: 9999,
-      lon: 1111,
+      lat: 48.85341,
+      lon: 2.3488,
     });
     expect(result.props.city).toEqual("paris");
   });
 
-  it("should get weather by coordinate from OpenWeatherAPI", async () => {
+  it("should get weather by coordinate from gateway", async () => {
     const result = await getWeatherByCoordinate.execute({
-      lat: 2222,
-      lon: 1111,
+      lat: 35.6895,
+      lon: 139.69171,
     });
     expect(result.props.city).toEqual("tokyo");
   });
