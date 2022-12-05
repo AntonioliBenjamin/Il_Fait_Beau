@@ -1,10 +1,9 @@
 import { CoordinatesErrors } from "../Errors/CoordinatesErrors";
-
 const cities = require("cities.json");
 
 export type coordinatesProperties = {
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
 };
 
 export class Coordinates {
@@ -12,23 +11,26 @@ export class Coordinates {
   constructor(coordinates: coordinatesProperties) {
     this.coordinates = coordinates;
     if (!this.isValid()) {
-      throw new CoordinatesErrors.InvalidEntry;
+      throw new CoordinatesErrors.InvalidEntry();
     }
   }
 
   isValid(): boolean {
     const regex = new RegExp(/^[0-9]*\.?[0-9]*$/);
-    return regex.test(this.coordinates.lon) &&
-            regex.test(this.coordinates.lat)  
+    return (
+      regex.test(this.coordinates.lon.toString()) &&
+      regex.test(this.coordinates.lat.toString())
+    );
   }
 
   exist() {
     const city = cities.find(
       (elm) =>
-        elm.lat === this.coordinates.lat && elm.lng === this.coordinates.lon
+        elm.lat === this.coordinates.lat.toString() &&
+        elm.lng === this.coordinates.lon.toString()
     );
     if (!city) {
-      throw new CoordinatesErrors.NotFound;
+      throw new CoordinatesErrors.NotFound();
     }
     return city.name.toLowerCase();
   }
