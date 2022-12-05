@@ -1,3 +1,4 @@
+import { City } from './../valueObjects/City';
 import { Weather } from "./../entities/Weather";
 import { WeatherGateway } from "./../gateways/WeatherGateway";
 import { WeatherRepository } from "./../repositories/WeatherRepository";

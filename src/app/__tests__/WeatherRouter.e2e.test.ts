@@ -27,7 +27,7 @@ describe("E2E - WeatherRouter", () => {
       console.info("Connected to mongodb");
     });
     weather = Weather.create({
-      city: "new york",
+      city: "paris",
       humidity: 0.99,
       lat: 264,
       lon: 1111,
