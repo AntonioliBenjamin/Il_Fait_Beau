@@ -27,10 +27,10 @@ describe("E2E - WeatherRouter", () => {
       console.info("Connected to mongodb");
     });
     weather = Weather.create({
-      city: "new york",
+      city: "paris",
       humidity: 0.99,
-      lat: 264,
-      lon: 1111,
+      lat: 48.85341,
+      lon: 2.3488,
       tempInCelcius: 11,
       windSpeed: 150,
     });
@@ -57,7 +57,7 @@ describe("E2E - WeatherRouter", () => {
       })
       .expect(200);
   });
-  it("should get /weather/city/:lat:lon", async () => {
+  it("should get /weather/city/:lat/:lon", async () => {
     await supertest(app)
       .get(`/weather/coordinate/${result.props.lat}/${result.props.lon}`)
       .expect((response) => {

@@ -4,16 +4,17 @@ const openWeatherGateway = new OpenWeatherGateway();
 
 describe("Integration - OpenWeatherGateway", () => {
   let API_KEY: string;
-  let lat = 48.8534;
+  let lat = 48.85341;
   let lon = 2.3488;
   let city: string;
   let parisMock;
+ 
 
   beforeAll(() => {
     parisMock = {
       coord: {
         lon: 2.3488,
-        lat: 48.8534,
+        lat: 48.85341,
       },
       weather: [
         {

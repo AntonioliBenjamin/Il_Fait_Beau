@@ -8,8 +8,8 @@ export const weatherFixtures: Weather[] = [
       tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
-      lat: 9999,
-      lon: 1111,
+      lat: 48.85341,
+      lon: 2.3488,
     },
   },
   {
@@ -19,19 +19,8 @@ export const weatherFixtures: Weather[] = [
       tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
-      lat: 9999,
-      lon: 1111,
+      lat: 43.29695,
+      lon: 5.38107,
     },
-  },
-  {
-    props: {
-      city: "las vegas",
-      humidity: 0.99,
-      lat: 7777,
-      lon: 7777,
-      tempInCelcius: 18,
-      windSpeed: 45,
-      createdAt: new Date(),
-    },
-  },
-];
+  }
+]

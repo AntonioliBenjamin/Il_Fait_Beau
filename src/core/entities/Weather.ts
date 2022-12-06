@@ -1,3 +1,5 @@
+import { Coordinates } from "./../valueObjects/Coordinates";
+import { City } from "./../valueObjects/City";
 export type WeatherProperties = {
   city: string;
   tempInCelcius: number;
@@ -13,6 +15,10 @@ export class Weather {
 
   constructor(props: WeatherProperties) {
     this.props = props;
+    new Coordinates({
+      lat: this.props.lat,
+      lon: this.props.lon,
+    }).exist();
   }
 
   static create(props: {
@@ -24,7 +30,7 @@ export class Weather {
     lon: number;
   }) {
     return new Weather({
-      city: props.city.toLowerCase(),
+      city: new City(props.city.toLowerCase().trim()).exist(),
       tempInCelcius: props.tempInCelcius,
       humidity: props.humidity,
       windSpeed: props.windSpeed,

@@ -17,8 +17,8 @@ describe("Unit - GetWeatherByCity", () => {
       tempInCelcius: 264,
       windSpeed: 150,
       createdAt: new Date(),
-      lat: 9999,
-      lon: 1111,
+      lat: 48.85341,
+      lon: 2.3488,
     });
     db.set(weather.props.city, weather);
   });
