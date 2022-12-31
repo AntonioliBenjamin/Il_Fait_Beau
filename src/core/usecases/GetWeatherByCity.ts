@@ -1,4 +1,3 @@
-import { City } from './../valueObjects/City';
 import { Weather } from "./../entities/Weather";
 import { WeatherGateway } from "./../gateways/WeatherGateway";
 import { WeatherRepository } from "./../repositories/WeatherRepository";
@@ -17,6 +16,6 @@ export class GetWeatherByCity implements UseCase<string, Weather> {
     }
     const getWeather = await this.weatherGateway.getByCity(city);
     const weather = Weather.create(getWeather.props);
-    return this.weatherRepository.save(weather);
+    return await this.weatherRepository.save(weather);
   }
 }

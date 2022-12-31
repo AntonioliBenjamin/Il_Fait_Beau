@@ -7,9 +7,9 @@ export namespace CoordinatesErrors {
     }
   }
 
-  export class NotFound extends DomainErrors {
-    constructor() {
-      super("COORDINATES NOT FOUND")
-    }
-  }
+  // export class NotFound extends DomainErrors {
+  //   constructor() {
+  //     super("COORDINATES NOT FOUND")
+  //   }
+  // }
 }
