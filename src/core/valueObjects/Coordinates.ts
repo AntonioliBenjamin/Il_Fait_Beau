@@ -29,9 +29,9 @@ export class Coordinates {
         elm.lat === this.coordinates.lat.toString() &&
         elm.lng === this.coordinates.lon.toString()
     );
-    if (!city) {
-      throw new CoordinatesErrors.NotFound();
-    }
+    // if (!city) {
+    //   throw new CoordinatesErrors.NotFound();
+    // }
     return city.name.toLowerCase();
   }
 }

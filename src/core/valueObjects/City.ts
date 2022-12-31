@@ -17,7 +17,7 @@ export class City {
   }
 
   exist(): string {
-    const city = cities.find((elm) => elm.name.toLowerCase() === this.city);
+    const city = cities.find((elm) => elm.name.toLowerCase() === this.city.toLowerCase());
     if (!city) {
       throw new CityErrors.NotFound();
     }
